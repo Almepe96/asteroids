@@ -30,11 +30,11 @@ def main():
              
         #Screen drawer  
         screen.fill("black")
-        pygame.display.flip()
 
         #Player drawer
         player.draw(screen)
-
+        #Dibujar
+        pygame.display.flip()
         #Fps limiter
         dt = clock.tick(60)/1000
 

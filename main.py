@@ -30,6 +30,7 @@ def main():
              
         #Screen drawer  
         screen.fill("black")
+        #update player movement
         player.update(dt)
         #Player drawer
         player.draw(screen)

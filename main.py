@@ -3,48 +3,37 @@ from constants import *
 from player import *
 
 def main():
-    pygame.init
-    pygame.time.Clock
+    pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    
-    #Initial arguments
-    x = SCREEN_WIDTH / 2
-    y = SCREEN_HEIGHT / 2   
-    dt = 0
     clock = pygame.time.Clock()
 
-    #Initial message
-    print("Starting asteroids!")
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
 
-    #Create Player
+    Player.containers = (updatable, drawable)
 
-    player = Player(x, y)
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
-    #Drawing loop
+    dt = 0
+
     while True:
         for event in pygame.event.get():
-             if event.type == pygame.QUIT:
-                  return
-             
-        #Screen drawer  
+            if event.type == pygame.QUIT:
+                return
+
+        for obj in updatable:
+            obj.update(dt)
+
         screen.fill("black")
-        #update player movement
-        player.update(dt)
-        #Player drawer
-        player.draw(screen)
-        #Dibujar
+
+        for obj in drawable:
+            obj.draw(screen)
+
         pygame.display.flip()
-        #Fps limiter
-        dt = clock.tick(60)/1000
+
+        # limit the framerate to 60 FPS
+        dt = clock.tick(60) / 1000
 
 
-
-
-
-
-
-#Start function
 if __name__ == "__main__":
     main()

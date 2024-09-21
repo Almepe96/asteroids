@@ -41,7 +41,7 @@ def main():
         for obj in shots:
             for ast in asteroids:
                 if obj.collisions(ast):
-                    ast.kill()
+                    ast.split()
                     obj.kill()
 
         #Pantalla en negro
